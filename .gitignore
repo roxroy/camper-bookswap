@@ -1,0 +1,7 @@
+data
+testdata
+public/build
+.env
+
+# Dependency directories
+node_modules
