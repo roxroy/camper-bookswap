@@ -1,7 +1,7 @@
 module.exports.index = function(req, res){
-  res.render('index', {user: "Great User",title:"homepage"});
+  res.render('public/index', {user: "Great User",title:"homepage"});
 };
 
 module.exports.about = function(req, res){
-  res.render('about', {title:"about page"});
+  res.render('public/about', {title:"about page"});
 };
