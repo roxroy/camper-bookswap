@@ -10,29 +10,34 @@
 
   <main class="container signup">
     <h4>Sign Up</h4>
-          <div class="row">
-        <form class="col s12">
-          <div class="row">
+    <div class="row">
+    <% include ../partials/error-box %>
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
             <div class="input-field col s12">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i><input class="invalid" id="signup-form-username" name="username" type="text" value=""><label for="signup-form-username">UserName</label>
-              </div>
+              <i class="material-icons prefix">account_circle</i>
+              <input class="invalid" id="signup-form-username" name="username" type="text" value="">
+              <label for="signup-form-username">UserName</label>
             </div>
           </div>
-          <div class="row">
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
             <div class="input-field col s12">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">vpn_key</i><input class="invalid" id="signup-form-password" name="password" type="password" value=""><label for="signup-form-password">Password</label>
-              </div>
+              <i class="material-icons prefix">vpn_key</i>
+              <input class="invalid" id="signup-form-password" name="password" type="password" value="">
+              <label for="signup-form-password">Password</label>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <button class="btn btn-block btn-lg waves-effect" type="submit">Create Account</button>
-            </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn btn-block btn-lg waves-effect" type="submit">Create Account</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
+    </div>
   </main>
 
   <footer>

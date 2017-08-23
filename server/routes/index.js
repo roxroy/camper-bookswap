@@ -1,10 +1,9 @@
 const publicRoutes = require('./public');
 const authRoutes = require('./auth');
 
-module.exports = (app) => {
+module.exports = (app, passport) => {
   app.get('/', publicRoutes.index);
   app.get('/about', publicRoutes.about);
 
-  app.get('/login', authRoutes.login);
-  app.get('/signup', authRoutes.signup);
+  authRoutes(app, passport);
 }

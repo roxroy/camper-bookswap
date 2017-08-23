@@ -5,12 +5,13 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 const routes = require('./routes');
 
 const app = express();
 require('dotenv').load();
-//require('./auth/passport')(passport);
+require('./auth/passport')(passport);
 
 const dbUri = process.env.MONGO_URI || 'mongodb://localhost/bookswap';
 mongoose.Promise = Promise;
@@ -18,6 +19,7 @@ mongoose.connect(dbUri, {
   useMongoClient: true,
 });
 
+app.use(morgan('combined'))
 app.use(cookieParser());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -28,20 +30,21 @@ app.use(session({
   saveUninitialized: true
 }));
 
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../dist')));
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views');
 
-routes(app);
 
 app.use((req, res, next) => {
   res.locals.login = req.isAuthenticated();
   next();
 });
+
+routes(app, passport);
 
 //authRoutes(app, passport);
 //apiRoutes(app);
