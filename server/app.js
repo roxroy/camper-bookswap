@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 const routes = require('./routes');
-//const authRoutes = require('./routes/auth'),
-//	apiRoutes = require('./routes/api');
 
 const app = express();
 require('dotenv').load();
@@ -38,8 +36,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views');
 
-app.get('/', routes.index);
-app.get('/about', routes.about);
+routes(app);
 
 app.use((req, res, next) => {
   res.locals.login = req.isAuthenticated();
