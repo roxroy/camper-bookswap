@@ -3,8 +3,10 @@ const authService = require("./authService");
 const setHandlers = () => {
   $('#APP_login').on('submit', (event) => {
     if (event) event.preventDefault();
-    console.log('setAuthHandlers', event.target);
-    let user = {username: 'ad', password: 'asd'};
+    let user = {
+      username: $('input[name=username]').val(), 
+      password: $('input[name=password]').val()
+    };
     
     authService.submitLogin(user)
     .then(loginData => {
@@ -18,10 +20,9 @@ const setHandlers = () => {
     .catch(e => {
       console.log('onSubmit error', e);
     }); 
-  
-  }); 
-}
 
+  });
+}
 
 module.exports = {
   setHandlers,
