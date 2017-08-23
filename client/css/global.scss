@@ -1,0 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,300);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  padding-bottom: 20px;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  padding-top: 50px;
+}
