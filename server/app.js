@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
@@ -22,7 +23,8 @@ mongoose.connect(dbUri, {
 app.use(morgan('combined'))
 app.use(cookieParser());
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.urlencoded({ extended: false })); // support encoded bodies
+app.use(expressValidator());
 
 app.use(session({
   secret: 'secretSauce2017',

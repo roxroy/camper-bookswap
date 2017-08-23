@@ -2,13 +2,28 @@ module.exports = (app, passport) => {
   app.route('/login').get((req, res) => {
       res.render('auth/login', {title:"login page"});
     }); 
-  app.post('/login', function(req, res, next) {
-    passport.authenticate('local-login', function(err, user, info) {
+  app.post('/login', (req, res, next) => {
+    req.checkBody('username', 'username is required').notEmpty(); 
+    req.checkBody('password', 'password is required').notEmpty(); 
+    
+    //Trim and escape the name field. 
+    req.sanitize('username').escape();
+    req.sanitize('username').trim();
+    req.sanitize('password').escape();
+    req.sanitize('password').trim();
+    //Run the validators
+    let errors = req.validationErrors();
+    console.log('my login', errors);
+    if (errors) {
+      return res.status(200).json({success: false, errors});
+    }
+
+    passport.authenticate('local-login', (err, user, info) => {
       if (err) {
         return next(err);
       }
       if (user) {
-        req.login(user, function (err) {
+        req.login(user, (err) => {
           if ( err ){
               return res.status(200).json({success: false});
           } else {
@@ -22,15 +37,29 @@ module.exports = (app, passport) => {
   });
 
   app.route('/signup').get((req, res) => {
-      res.render('auth/signup', {title:"signup page"});
+      res.render('auth/signup', {title: 'Signup page'});
     }); 
-  app.post('/signup', function(req, res, next) {
-    passport.authenticate('local-signup', function(err, user, info) {
+  app.post('/signup', (req, res, next) => {
+    //Check that the name field is not empty
+/*    req.checkBody('username', 'username is required').notEmpty(); 
+    req.checkBody('password', 'password is required').notEmpty(); 
+    
+    //Trim and escape the name field. 
+    req.sanitize('username').escape();
+    req.sanitize('password').trim();
+    
+    //Run the validators
+    let errors = req.validationErrors();
+    if (errors) {
+      return res.status(200).json(Object.assign({success: false, errors}));
+    }
+*/
+    passport.authenticate('local-signup', (err, user, info) => {
       if (err) {
         return next(err);
       }
       if (user) {
-        req.login(user, function (err) {
+        req.login(user, (err) => {
           if ( err ){
               return res.status(200).json({success: false});
           } else {

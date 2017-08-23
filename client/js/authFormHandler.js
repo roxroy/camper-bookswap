@@ -16,7 +16,7 @@ const setHandlers = () => {
       }
     })
     .catch(e => {
-      console.log('onSubmit', e);
+      console.log('onSubmit error', e);
     }); 
   
   }); 
