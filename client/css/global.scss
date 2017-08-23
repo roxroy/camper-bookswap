@@ -15,6 +15,10 @@ nav {
 
 main {
   flex: 1 0 auto;
+
+  &.container {
+    padding-top: 40px;
+  }
 }
 
 footer {
