@@ -5,22 +5,18 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 nav {
-  padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 main {
   flex: 1 0 auto;
-
-  &.container {
-    padding-top: 40px;
-  }
 }
 
 footer {
-  padding-top: 50px;
+	padding-top: 50px;
 }

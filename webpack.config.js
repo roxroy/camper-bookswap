@@ -10,20 +10,25 @@ const dir_js = path.resolve(__dirname, 'client/js'),
 let dir_build = path.resolve(__dirname, 'public/build');
 
 module.exports = {
-  entry: path.resolve(dir_js, 'main.js'),
-  entry: [
-    path.resolve(dir_js, 'main.js'),
-    path.resolve(dir_cs, 'main.scss')
-  ],
+  entry: './client/index',
   output: {
-    path: dir_build,
+    path: path.resolve(dir_build),
     filename: 'app.js'
+  },
+  resolve: {
+     extensions: ['.jsx', '.js', '.css'],
   },
   module: {
     loaders: [
       {
-        loader: 'babel-loader',
-        test: dir_js,
+        test: /\.js$/, 
+        use: 'babel-loader', 
+        exclude: /node_modules/ 
+      },
+      { 
+        test: /\.jsx$/, 
+        use: 'babel-loader', 
+        exclude: /node_modules/ 
       },
       { // regular css files
           test: /\.css$/,
@@ -42,7 +47,7 @@ module.exports = {
     ]
   },
   plugins: [
-      new ExtractTextPlugin("app.css")
+    new ExtractTextPlugin("app.css")
   ],
   // Create Sourcemaps for the bundle
   devtool: 'source-map',

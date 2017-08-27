@@ -1,0 +1,21 @@
+.home {
+  h1 {
+    color: $light-blue;
+  }
+}
+
+.hero {
+	min-height: 400px;
+	background: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)),url(/images/tray-glasses.jpg);
+	background-position: center top;
+	background-size: cover;
+
+	h3  {
+		margin-top: 60px;
+	}
+
+	img {
+		height: 200px;
+		margin: 60px 0 0 120px;
+	}
+}

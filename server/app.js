@@ -36,10 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '../public')))
-app.use(express.static(path.join(__dirname, '../dist')));
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views');
-
+app.use(express.static(path.join(__dirname, '../public/build')))
 
 app.use((req, res, next) => {
   res.locals.login = req.isAuthenticated();
@@ -51,14 +48,10 @@ routes(app, passport);
 //authRoutes(app, passport);
 //apiRoutes(app);
 
-app.use(function(err, req, res, next) {
-	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: err,
-		title : "Something when wrong"
-	});
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'),  { user: req.user });
 });
+
 
 const port = process.env.PORT || 3000;
 
