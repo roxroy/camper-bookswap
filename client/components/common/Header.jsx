@@ -15,7 +15,7 @@ const Header = ({isLoggedIn, logout}) => {
     return ( 
       <ul className="right hide-on-med-and-down">
         <li key="1">
-          <Link to="/">Home</Link>
+          <Link to="/library">Browse Books</Link>
         </li>
         {(isLoggedIn) &&
           <li>

@@ -8,6 +8,7 @@ import App from './components/App';
 import Home from './components/home/Home';
 import SignupForm from './components/auth/SignupForm';
 import LoginForm from './components/auth/LoginForm';
+import Library from './components/Library';
 
 import reducers from './reducers';
 import './components/bundle.scss';
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
+        <Route path='/library' component={Library} />
         <Route path='/login' component={LoginForm} />
         <Route path='/signup' component={SignupForm} />
       </Route>

@@ -4,7 +4,6 @@ const authRoutes = require('./auth');
 
 module.exports = (app, passport) => {
   app.get('/', publicRoutes.index);
-  app.get('/about', publicRoutes.about);
 
   app.get('/search', (req, res) => {
     console.log('/search 1');
