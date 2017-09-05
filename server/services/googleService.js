@@ -1,5 +1,6 @@
 require('dotenv').load();
-let books = require('google-books-search');
+let googleBooks = require('google-books-search');
+let books = require('./mockData').books;
 
 let options = {
     key: process.env.GOOGLE_API_KEY,
@@ -13,7 +14,7 @@ let options = {
 
 const search = (title) => {
   return new Promise(function(resolve, reject) {
-    books.search(title, options, (error, results, apiResponse) => {
+    googleBooks.search(title, options, (error, results, apiResponse) => {
       console.log('search done', error, results);
       if ( ! error ) {
         return resolve({success:true, results});
@@ -24,6 +25,13 @@ const search = (title) => {
   });
 }
 
+const mockSearch = (title) => {
+  return new Promise(function(resolve, reject) {
+    return  resolve(books);
+  });
+}
+
 module.exports = {
   search,
+  mockSearch,
 }
