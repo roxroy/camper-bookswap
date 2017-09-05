@@ -1,11 +1,20 @@
 import React, {PropTypes} from 'react';
 import SearchListItem from './SearchListItem';
+import { connect } from 'react-redux';
 
 const  SearchList = (props) => {
 
- const booklist = [];
+  const booklist = props.books.map( (book, i) => {
+   return  <SearchListItem 
+      book={book}
+      isLoggedIn={props.isLoggedIn} 
+      key={i}
+    />
+  });
 
- const searchText = '..term...';
+  const searchText = props.books.length 
+    ? `Search for : ${props.title}` 
+    : '';
 
   return (
       <div>
@@ -19,4 +28,10 @@ const  SearchList = (props) => {
     )
 }
 
-export default SearchList;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  };
+}
+
+export default connect(mapStateToProps)(SearchList);

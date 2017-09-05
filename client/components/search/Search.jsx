@@ -7,7 +7,7 @@ import { searchBookTitle, searchForBook } from '../../actions/search';
 
 class Search extends React.Component {
 
- constructor(props) {
+  constructor(props) {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -19,7 +19,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const bookList = { bars:  this.props.books };
+    const bookList = { books:  this.props.books };
 
     return (
       <div>
