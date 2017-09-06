@@ -1,5 +1,6 @@
 import React from 'react';
 import Search from './search/Search';
+import { connect } from 'react-redux';
 
 function Library() {
   return (
@@ -9,4 +10,10 @@ function Library() {
   )
 }
 
-export default Library;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  };
+}
+
+export default connect(mapStateToProps)(Library);
