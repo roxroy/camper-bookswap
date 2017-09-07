@@ -9,6 +9,7 @@ import Home from './components/home/Home';
 import SignupForm from './components/auth/SignupForm';
 import LoginForm from './components/auth/LoginForm';
 import Library from './components/Library';
+import Myshelf from './components/Myshelf';
 
 import reducers from './reducers';
 import './components/bundle.scss';
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />;
         <Route path='/library' component={Library} />
+        <Route path='/myshelf' component={Myshelf} />
         <Route path='/login' component={LoginForm} />
         <Route path='/signup' component={SignupForm} />
       </Route>

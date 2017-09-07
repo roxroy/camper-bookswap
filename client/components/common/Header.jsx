@@ -18,6 +18,11 @@ const Header = ({isLoggedIn, logout}) => {
           <Link to="/library">Browse Books</Link>
         </li>
         {(isLoggedIn) &&
+          <li key="4">
+            <Link to="/myshelf">My Shelf</Link>
+          </li> 
+        }
+        {(isLoggedIn) &&
           <li>
             <Link to="/logout" onClick={(e) => onLogout(e)} >Logout</Link>
           </li> 
