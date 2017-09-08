@@ -4,6 +4,7 @@ const mapItem = (item) => {
   return {
     id : item._id,
     username: item.username,
+    city: item.city,
   }
 }
 
@@ -19,6 +20,24 @@ const addNew = (profile, cb) => {
     }
     cb(newUser);
   });
+};
+
+const update = (profile, cb) => {
+  return User.findOne({ 'username': profile.username })
+    .exec((err, user) => {
+      if (err) {
+        throw err;
+      }
+      user.city = profile.city;
+
+      user.save((err) => {
+        if (err) {
+          throw err;
+        }
+        cb(user);
+      });
+      
+    });
 };
 
 const getOne = (username) => {
@@ -37,4 +56,5 @@ const getOne = (username) => {
 module.exports = {
   getOne,
   addNew,
+  update,
 }

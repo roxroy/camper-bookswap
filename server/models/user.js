@@ -10,6 +10,7 @@ const User = new Schema({
   },
   username: String,
   password: String,
+  city: String,
 });
 
 // generating a hash
